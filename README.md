@@ -34,9 +34,9 @@ Visualization for last version (array of Byte is byte aligned):
                       NewField16: Integer(:16 + 0)
                       NewField16: Integer(:16 + 0)
                     end)
-                  f1: array [:0 + 1] of bit
-                  f1: array [:0 + 1] of bit
-                  f1: array [:0 + 1] of bit
+                  f1: Boolean:1
+                  f1: Boolean:1
+                  f1: Boolean:1
                 end
               EnabledWithAttribs: Optional:1 of (record[:0 + 0]
                   NewField25: array [:0 + 25] of bit
@@ -59,7 +59,7 @@ Visualization for last version (array of Byte is byte aligned):
                   end
                 NewField: record[:0 + 0]
                   b11: array [:0 + 11] of bit
-                  f1: array [:0 + 1] of bit
+                  f1: Boolean:1
                   b9: array [:0 + 9] of bit
                 end
               end
@@ -75,11 +75,11 @@ Visualization for last version (array of Byte is byte aligned):
               Values: case (:8 + 0) of
                 GlobalValue(0): record[:0 + 0]
                   ValueIndex: array [:0 + 11] of bit
-                  IsSet: array [:0 + 1] of bit
+                  IsSet: Boolean:1
                 end
                 ByPlayerValue(1): array [:5 + 0] of record[:0 + 0]
                     ValueIndex: array [:0 + 11] of bit
-                    IsSet: array [:0 + 1] of bit
+                    IsSet: Boolean:1
                   end
               end
             end
@@ -124,7 +124,7 @@ Visualization for last version (array of Byte is byte aligned):
                 m_Realm: array [:0 + 4] of Byte
                 m_SHA256Hash: array [:0 + 32] of Byte
               end
-            flag: array [:0 + 1] of bit
+            flag: Boolean:1
             m_stringToon: record[:0 + 0]
               m_region: Integer(:8 + 0)
               m_programId: array [:0 + 32] of bit
@@ -140,7 +140,7 @@ Visualization for last version (array of Byte is byte aligned):
             trttt: record[:0 + 0]
               b32: Optional:1 of (array [:0 + 32] of bit)
               b23: Optional:1 of (array [:0 + 23] of bit)
-              b1: array [:0 + 1] of bit
+              b1: Boolean:1
               b32: Optional:1 of (array [:0 + 32] of bit)
               b3: array [:0 + 3] of bit
               b30: Integer(:30 + 0)
@@ -152,7 +152,7 @@ Visualization for last version (array of Byte is byte aligned):
               b8: array [:0 + 8] of bit
               b34: array [:0 + 34] of bit
               f54: Optional:1 of (array [:0 + 54] of bit)
-              b1: array [:0 + 1] of bit
+              b1: Boolean:1
               b5: array [:0 + 5] of bit
               b5: array [:0 + 5] of bit
               b5: array [:0 + 5] of bit
@@ -163,7 +163,7 @@ Visualization for last version (array of Byte is byte aligned):
                 ofs: Integer(:32 + 0)
               end
               n32: Integer(:32 + 0)
-              f: array [:0 + 1] of bit
+              f: Boolean:1
               n21: Integer(:21 + 0)
               CAFEBABE: Integer(:32 + 0)
             end
@@ -200,7 +200,7 @@ Visualization for last version (array of Byte is byte aligned):
                     b16: Integer(:16 + 0)
                     b16: Integer(:16 + 0)
                   end)
-                b1: array [:0 + 1] of bit
+                b1: Boolean:1
                 hero: array [:5 + 0] of array [:0 + 32] of bit
                 b23: array [:0 + 23] of bit
               end)
@@ -219,13 +219,13 @@ Visualization for last version (array of Byte is byte aligned):
         hasSkins: array [:32 + 0] of array [:0 + 256] of bit
         InitData: record[:0 + 0]
           m_disabledHeroList: array [:8 + 0] of array [:0 + 32] of bit
-          m_randomSeed: array [:0 + 32] of bit
-          unk: array [:0 + 32] of bit
+          m_randomSeed: Integer(:32 + 0)
+          unk: Integer(:32 + 0)
         end
         playersInfo: array [:5 + 0] of record[:0 + 0]
             m_Unk1: record[:0 + 0]
               m_Unk1: array [:0 + 32] of bit
-              m_SlotId: array [:0 + 5] of bit
+              m_SlotId: Integer(:5 + 0)
               m_toon: record[:0 + 0]
                 m_region: Integer(:8 + 0)
                 m_programId: array [:0 + 32] of bit
@@ -239,7 +239,7 @@ Visualization for last version (array of Byte is byte aligned):
                   m_realm: Integer(:32 + 0)
                   m_globalName: array [:7 + 2] of Byte
                 end
-                m_Flags: array [:0 + 1] of bit
+                m_Flags: Boolean:1
               end
               m_Unk4: array [:0 + 2] of bit
               m_SecName: Optional:1 of (record[:0 + 0]
@@ -250,23 +250,30 @@ Visualization for last version (array of Byte is byte aligned):
                     m_realm: Integer(:32 + 0)
                     m_globalName: array [:7 + 2] of Byte
                   end
-                  m_Flags: array [:0 + 1] of bit
+                  m_Flags: Boolean:1
                 end)
             end
             m_Unk2: array [:0 + 198] of bit
             m_Unk3: Optional:1 of (array [:0 + 64] of bit)
             m_Unk4: record[:0 + 0]
-              m_UnkFlags1: array [:0 + 2] of bit
-              m_Unk1: array [:0 + 35] of bit
-              m_hasSilencePenalty: array [:0 + 1] of bit
-              m_Unk2: array [:0 + 1] of bit
-              m_hasVoiceSilencePenalty: array [:0 + 1] of bit
-              m_isBlizzardStaff: array [:0 + 1] of bit
+              m_UnkFlags: array [:0 + 4] of bit
+              m_build: Integer(:32 + 0)
+              m_Skins: case (:1 + 0) of
+                m_Skins(0): record[:0 + 0]
+                  m_Skins: array [:12 + 0] of bit
+                  unk: Boolean:1
+                end
+                none(1): array [:0 + 0] of bit
+              end
+              m_hasSilencePenalty: Boolean:1
+              unk2: Boolean:1
+              m_hasVoiceSilencePenalty: Boolean:1
+              m_isBlizzardStaff: Boolean:1
             end
             m_PartyInfo: Optional:1 of (array [:0 + 64] of bit)
             m_TagInfo: Optional:1 of (array [:7 + 0] of Byte)
-            m_PlayerLevel: array [:0 + 32] of bit
-            m_hasActiveBoost: array [:0 + 1] of bit
+            m_PlayerLevel: Integer(:32 + 0)
+            m_hasActiveBoost: Boolean:1
           end
         _end: record[:0 + 0]
           sss: array [:0 + 64] of bit
@@ -276,18 +283,19 @@ Visualization for last version (array of Byte is byte aligned):
               m_region: Integer(:8 + 0)
               m_programId: array [:0 + 32] of bit
               m_realm: Integer(:32 + 0)
-              m_id: Integer(:64 + 0)
+              m_ammId: array [:0 + 32] of bit
+              unk: array [:0 + 32] of bit
             end
           end
           b87: array [:0 + 87] of bit
           a38: array [:4 + 1] of array [:0 + 38] of bit
-          Unk: array [:0 + 1] of bit
+          unk: Boolean:1
           Neut: array [:4 + 1] of array [:0 + 32] of bit
           Hero: array [:5 + 0] of record[:0 + 0]
               b32: Integer(:32 + 0)
               HeroIcon: array [:11 + 0] of record[:0 + 0]
                   Hero: array [:0 + 32] of bit
-                  ICON: Integer(:32 + 0)
+                  ICON: array [:0 + 32] of bit
                   b32: Integer(:32 + 0)
                 end
               b11: array [:0 + 11] of bit
